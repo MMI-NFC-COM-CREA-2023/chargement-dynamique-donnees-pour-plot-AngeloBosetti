@@ -12,17 +12,39 @@
         <a href="#section1">Section 1</a>
         <a href="#section2">Section 2</a>
     </nav>
-
+    <script type="module">
+        import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
+        const dataResponse = await fetch("dataCorrected.json");
+        const dataCorected = await dataResponse.json();
+        console.log(dataCorected);
+        const MonPlot = Plot.plot({
+            x: { label: "Années" },
+            y: { label: "Gains en euros" },
+            color: { legend: true },
+            marginLeft: 75,
+            marks: [
+                Plot.lineY(dataCorected, {
+                x: "YEAR",
+                y: "WINNER_PRIZE_EUROS",
+                stroke: "TOURNAMENT",
+                tip: true
+                })
+            ]
+            });
+            const div = document.querySelector("#graph1").appendChild(MonPlot);
+            div.append(plot);
+    </script>
     <section>
         <h2 id="section1">Section 1</h2>
         <p>Explorez le monde fascinant de l'art numérique à travers cette première section. Découvrez comment la technologie et la créativité se rencontrent pour former de nouvelles expressions artistiques.</p>
         
         <figure>
-            <img src="https://source.unsplash.com/random/800x400?digital+art" alt="Art numérique">
             <figcaption>L'art numérique repousse les frontières de la créativité</figcaption>
         </figure>
         
-        <div id="graph1" class="graph-placeholder"></div>
+        <div id="graph1" class="graph-placeholder">
+            
+        </div>
     </section>
 
     <section>
@@ -30,7 +52,6 @@
         <p>Dans cette deuxième section, plongez dans l'univers de l'art interactif. Explorez comment les artistes utilisent la technologie pour créer des expériences immersives et engageantes.</p>
         
         <figure>
-            <img src="https://source.unsplash.com/random/800x400?interactive+art" alt="Art interactif">
             <figcaption>L'art interactif invite le spectateur à devenir partie intégrante de l'œuvre</figcaption>
         </figure>
         
