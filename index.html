@@ -32,9 +32,13 @@
             ]
             });
             const div = document.querySelector("#graph1").appendChild(MonPlot);
+
         const victoireResponse = await fetch("victoireAprs2002.json");
         const victoireAprs2002 = await victoireResponse.json();
         console.log(victoireAprs2002);
+        const joueurResponse = await fetch("joueursTries.json");
+        const joueursTries = await joueurResponse.json();
+        console.log(joueursTries);
         const MonPlot2 = Plot.plot({
             color: { legend: true },
             title: "Domination du big three de 2002 a 2022",
@@ -42,7 +46,7 @@
             x: { label: "tounoir" },
             marginLeft: 130,
             height: 750,
-            y: { label: "Vainquer", grid: true ,domain: victoireResponse },
+            y: { label: "Vainquer", grid: true ,domain: joueursTries },
             r:{
                 range: [0,28]
             },
@@ -59,7 +63,6 @@
             const div2 = document.querySelector("#graph2").appendChild(MonPlot2);
     </script>
     <section>
-        <h2 id="section1">Section 1</h2>
         <p>Explorez le monde fascinant de l'art numérique à travers cette première section. Découvrez comment la technologie et la créativité se rencontrent pour former de nouvelles expressions artistiques.</p>
         
         <figure>
@@ -72,12 +75,6 @@
     </section>
 
     <section>
-        <h2 id="section2">Section 2</h2>
-        <p>Dans cette deuxième section, plongez dans l'univers de l'art interactif. Explorez comment les artistes utilisent la technologie pour créer des expériences immersives et engageantes.</p>
-        
-        <figure>
-            <figcaption>L'art interactif invite le spectateur à devenir partie intégrante de l'œuvre</figcaption>
-        </figure>
         
         <div id="graph2" class="graph-placeholder"></div>
     </section>
